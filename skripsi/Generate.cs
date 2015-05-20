@@ -19,25 +19,16 @@ namespace skripsi
             InitializeComponent();
         }
 
-        private List<List<Point>> Polylines = new List<List<Point>>();
+        private List<Point> Scans = new List<Point>();
 
-        public void passList(List<List<Point>> Polylines)
+        public void passList(List<Point> scan)
         {
-            this.Polylines = Polylines;
+            this.Scans = scan;
         }
 
         private void formGen_Load(object sender, EventArgs e)
         {
-            foreach (List<Point> polyline in Polylines)
-            {
-                // Draw the polygon.
-
-
-                listPolyline.DataSource = polyline;
-
-                // Draw the corners.
-               
-            }
+            listPolyline.DataSource = Scans;
         }
 
 
