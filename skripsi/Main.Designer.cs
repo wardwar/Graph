@@ -1,6 +1,6 @@
 ﻿namespace skripsi
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.picCanvas = new System.Windows.Forms.PictureBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.openFileImage = new System.Windows.Forms.OpenFileDialog();
@@ -43,6 +43,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnBug = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,9 +77,9 @@
             this.btnLoad.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.btnLoad.Location = new System.Drawing.Point(12, 617);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(113, 33);
+            this.btnLoad.Size = new System.Drawing.Size(156, 33);
             this.btnLoad.TabIndex = 2;
-            this.btnLoad.Text = "Load Gambar";
+            this.btnLoad.Text = "Load Gambar Grafik";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -89,11 +92,11 @@
             this.btnGen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGen.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGen.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGen.Location = new System.Drawing.Point(523, 617);
+            this.btnGen.Location = new System.Drawing.Point(464, 616);
             this.btnGen.Name = "btnGen";
-            this.btnGen.Size = new System.Drawing.Size(81, 33);
+            this.btnGen.Size = new System.Drawing.Size(87, 33);
             this.btnGen.TabIndex = 3;
-            this.btnGen.Text = "Generate";
+            this.btnGen.Text = "Generate 1";
             this.btnGen.UseVisualStyleBackColor = true;
             this.btnGen.Click += new System.EventHandler(this.btnGen_Click);
             // 
@@ -102,7 +105,7 @@
             this.btnSumbu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSumbu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSumbu.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSumbu.Location = new System.Drawing.Point(131, 617);
+            this.btnSumbu.Location = new System.Drawing.Point(174, 617);
             this.btnSumbu.Name = "btnSumbu";
             this.btnSumbu.Size = new System.Drawing.Size(75, 33);
             this.btnSumbu.TabIndex = 4;
@@ -115,7 +118,7 @@
             this.btnKurva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnKurva.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnKurva.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKurva.Location = new System.Drawing.Point(212, 617);
+            this.btnKurva.Location = new System.Drawing.Point(255, 617);
             this.btnKurva.Name = "btnKurva";
             this.btnKurva.Size = new System.Drawing.Size(65, 33);
             this.btnKurva.TabIndex = 5;
@@ -128,7 +131,7 @@
             this.btnHapus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHapus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHapus.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHapus.Location = new System.Drawing.Point(436, 617);
+            this.btnHapus.Location = new System.Drawing.Point(362, 616);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(81, 33);
             this.btnHapus.TabIndex = 6;
@@ -140,7 +143,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(620, 627);
+            this.label1.Location = new System.Drawing.Point(659, 617);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 7;
@@ -159,7 +162,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(620, 640);
+            this.label2.Location = new System.Drawing.Point(659, 637);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 9;
@@ -169,7 +172,7 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(722, 329);
+            this.listBox2.Location = new System.Drawing.Point(759, 231);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(120, 95);
             this.listBox2.TabIndex = 10;
@@ -178,7 +181,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(719, 313);
+            this.label3.Location = new System.Drawing.Point(749, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 11;
@@ -188,7 +191,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(719, 441);
+            this.label4.Location = new System.Drawing.Point(749, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 12;
@@ -196,19 +199,53 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(555, 458);
+            this.richTextBox1.Location = new System.Drawing.Point(362, 460);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(135, 96);
             this.richTextBox1.TabIndex = 13;
             this.richTextBox1.Text = "";
             // 
-            // Form1
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(503, 460);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(135, 96);
+            this.richTextBox2.TabIndex = 14;
+            this.richTextBox2.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(557, 617);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 33);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Generate 2";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnBug
+            // 
+            this.btnBug.Location = new System.Drawing.Point(0, 0);
+            this.btnBug.Name = "btnBug";
+            this.btnBug.Size = new System.Drawing.Size(75, 23);
+            this.btnBug.TabIndex = 16;
+            this.btnBug.Text = "bug";
+            this.btnBug.UseVisualStyleBackColor = true;
+            this.btnBug.Click += new System.EventHandler(this.btnBug_Click);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(884, 662);
+            this.Controls.Add(this.btnBug);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -224,9 +261,10 @@
             this.Controls.Add(this.picCanvas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Digitasi Grafik";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
             this.ResumeLayout(false);
@@ -250,6 +288,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBug;
     }
 }
 

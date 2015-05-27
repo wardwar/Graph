@@ -19,16 +19,16 @@ namespace skripsi
             InitializeComponent();
         }
 
-        private List<Point> Scans = new List<Point>();
+        private List<Point> Tma = new List<Point>();
 
-        public void passList(List<Point> scan)
+        public void passList(List<Point> tma)
         {
-            this.Scans = scan;
+            this.Tma = tma;
         }
 
         private void formGen_Load(object sender, EventArgs e)
         {
-            listPolyline.DataSource = Scans;
+            dgTMA.DataSource = Tma;
         }
 
 

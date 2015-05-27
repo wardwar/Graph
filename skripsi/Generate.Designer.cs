@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listPolyline = new System.Windows.Forms.ListBox();
+            this.dgTMA = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTMA)).BeginInit();
             this.SuspendLayout();
             // 
-            // listPolyline
+            // dgTMA
             // 
-            this.listPolyline.FormattingEnabled = true;
-            this.listPolyline.Location = new System.Drawing.Point(12, 12);
-            this.listPolyline.Name = "listPolyline";
-            this.listPolyline.Size = new System.Drawing.Size(260, 95);
-            this.listPolyline.TabIndex = 1;
+            this.dgTMA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTMA.Location = new System.Drawing.Point(-2, 0);
+            this.dgTMA.Name = "dgTMA";
+            this.dgTMA.Size = new System.Drawing.Size(725, 150);
+            this.dgTMA.TabIndex = 0;
             // 
             // formGen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.listPolyline);
+            this.ClientSize = new System.Drawing.Size(721, 262);
+            this.Controls.Add(this.dgTMA);
             this.Name = "formGen";
             this.Text = "Generate Data";
             this.Load += new System.EventHandler(this.formGen_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTMA)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listPolyline;
+        private System.Windows.Forms.DataGridView dgTMA;
+
 
     }
 }
