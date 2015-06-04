@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -193,7 +193,7 @@ namespace skripsi
                         {
                             WilayahSumbu = NewSumbu;
                             NewSumbu = null;
-                            Bresenham(WilayahSumbu, "sumbu");
+                            Plotline(WilayahSumbu, "sumbu");
 
                             picCanvas.MouseMove += picCanvas_MouseMove_NotDrawing;
                             picCanvas.MouseMove -= picCanvas_MouseMove_Drawing;
@@ -229,7 +229,7 @@ namespace skripsi
                         OffsetX = hit_polyline[hit_point].X - e.X;
                         OffsetY = hit_polyline[hit_point].Y - e.Y;
                         richTextBox1.Clear();
-                        Bresenham(WilayahSumbu, "sumbu");
+                        Plotline(WilayahSumbu, "sumbu");
                         listBox1.DataSource = SumbuX;
                         listBox2.DataSource = SumbuY;
                                             }
@@ -272,7 +272,7 @@ namespace skripsi
                             {
                                 Kurva = NewSumbu;
                                 NewSumbu = null;
-                                Bresenham(Kurva, "kurva");
+                                Plotline(Kurva, "kurva");
                                 picCanvas.MouseMove += picCanvas_MouseMove_NotDrawing;
                                 picCanvas.MouseMove -= picCanvas_MouseMove_Drawing;
                             }
@@ -309,7 +309,7 @@ namespace skripsi
                         OffsetX = hit_polyline[hit_point].X - e.X;
                         OffsetY = hit_polyline[hit_point].Y - e.Y; 
                         richTextBox1.Clear();
-                        Bresenham(Kurva, "kurva");
+                        Plotline(Kurva, "kurva");
                         listBox1.DataSource = KurvaScan;
                         
 
@@ -502,37 +502,118 @@ namespace skripsi
             }
         }
 
-       private List<Point> plotLine(Point ptA, Point ptB)
+       private List<Point> Bresenham(Point ptA, Point ptB)
        {
            Scan = new List<Point>();
            Point plot = new Point();
-           int deltaX;
-           int deltaY;
-           int curDist = -1;
-           int distance = -1;
-           curDist = 0;
-           deltaX = ptB.X - ptA.X;
-           deltaY = ptB.Y - ptA.Y;
-           distance = (int)Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
-           plot = ptA;
-           Scan.Add(plot);
-           while (curDist < distance)
+           int x, y;
+           int dx, dy;
+           int incx, incy;
+           int balance;
+           int x1 = ptA.X;
+           int y1 = ptA.Y;
+           int x2 = ptB.X;
+           int y2 = ptB.Y;
+
+           if(x2 >= x1)
            {
-               curDist++;
-               if (curDist > 0)
-               {
-                   int offsetX = (int)((double)curDist / (double)distance * (double)deltaX);
-                   int offsetY = (int)((double)curDist / (double)distance * (double)deltaY);
-                   plot.X = ptA.X + offsetX;
-                   plot.Y = ptA.Y + offsetY;
-                   Scan.Add(plot);
-               }
+               dx = x2 - x1;
+               incx = 1;
            }
-           return Scan;
+           else
+           {
+               dx = x1 - x2;
+               incx = -1;
+           }
+
+           if (y2 >= y1)
+           {
+               dy = y1 - y2;
+               incy = 1;
+           }
+           else
+           {
+               dy = y1 - y2;
+               incy = -1;
+           }
+
+           x=x1;
+           y=y1;
+
+           if( dx >= dy)
+           {
+               dy <<= 1;
+               balance = dy - dx;
+               dx <<= 1;
+
+               while(x != x2)
+               {
+                   plot.X = x;
+                   plot.Y = y;
+                   Scan.Add(plot);
+                   if(balance >= 0)
+                   {
+                       y += incy;
+                       balance -= dx;
+                   }
+                   balance += dy;
+                   x += incx;
+               }
+               plot.X = x;
+               plot.Y = y;
+               Scan.Add(plot);
+           }
+           else
+           {
+               dx <<= 1;
+               balance = dx - dy;
+               dy <<= 1;
+
+               while (y != y2)
+               {
+                   plot.X = x;
+                   plot.Y = y;
+                   Scan.Add(plot);
+
+                   if(balance >= 0)
+                   {
+                       x += incx;
+                       balance -= dy;
+                   }
+                   balance += dx;
+                   y += incy;
+               }
+               plot.X = x;
+               plot.Y = y;
+               Scan.Add(plot);
+           }
+           //int deltaX;
+           //int deltaY;
+           //int curDist = -1;
+           //int distance = -1;
+           //curDist = 0;
+           //deltaX = ptB.X - ptA.X;
+           //deltaY = ptB.Y - ptA.Y;
+           //distance = (int)Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+           //plot = ptA;
+           //Scan.Add(plot);
+           //while (curDist < distance)
+           //{
+             //  curDist++;
+               //if (curDist > 0)
+               //{
+                 //  int offsetX = (int)((double)curDist / (double)distance * (double)deltaX);
+                   //int offsetY = (int)((double)curDist / (double)distance * (double)deltaY);
+                   //plot.X = ptA.X + offsetX;
+                   //plot.Y = ptA.Y + offsetY;
+                   //Scan.Add(plot);
+               //}
+           //}
+          return Scan;
        }
 
 
-       private void Bresenham(List<Point> Garis, string type)
+       private void Plotline(List<Point> Garis, string type)
        {
            xya = new List<Point>();
            xyb = new List<Point>();
@@ -578,28 +659,28 @@ namespace skripsi
 
                if (type == "sumbu" && i == 0)
                {
-                   SumbuY = plotLine(xya[i], xyb[i]);
+                   SumbuY = Bresenham(xya[i], xyb[i]);
 
                }
                else if (type == "sumbu" && i == 1)
                {
-                   SumbuX = plotLine(xya[i], xyb[i]); ;
+                   SumbuX = Bresenham(xya[i], xyb[i]); ;
                }
 
                if (type == "kurva")
                {
-                   KurvaScan.AddRange(plotLine(xya[i], xyb[i]));
+                   KurvaScan.AddRange(Bresenham(xya[i], xyb[i]));
                }
                if (type == "test")
                {
                    if (i == 0)
                    {
-                       Atas = plotLine(xya[i], xyb[i]);
+                       Atas = Bresenham(xya[i], xyb[i]);
 
                    }
                    else if (i == 1)
                    {
-                       Kanan = plotLine(xya[i], xyb[i]); ;
+                       Kanan = Bresenham(xya[i], xyb[i]); ;
                    }
                }
            }
@@ -624,8 +705,8 @@ namespace skripsi
 
         private void label2_Click(object sender, EventArgs e)
         {
-            Bresenham(WilayahSumbu,"sumbu");
-            Bresenham(WilayahSumbu, "test");
+            Plotline(WilayahSumbu,"sumbu");
+            Plotline(WilayahSumbu, "test");
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -641,7 +722,13 @@ namespace skripsi
             y4 = m2 * x4 + WilayahSumbu[1].Y - m2 * WilayahSumbu[1].X;
             double a = Math.Sqrt(Math.Pow(x4 - WilayahSumbu[1].X, 2) + Math.Pow(y4 - WilayahSumbu[1].Y, 2));
             double a1 = Math.Sqrt(Math.Pow(WilayahSumbu[2].X - WilayahSumbu[1].X, 2) + Math.Pow(WilayahSumbu[2].Y - WilayahSumbu[1].Y, 2));
-            int x = 186 * (int)a / (int)a1;
+            double x = Math.Round(186 * (double)a / (double)a1,2);
+            double asli = Math.Round(x % (int)x,2);
+            double menit = asli* 60;
+            int jamx = (int)x;
+            string jammenit = (int)x + ":" + (int)menit; 
+
+
 
             x5 = (m1 * WilayahSumbu[1].X - m2 * Kurva[1].X + Kurva[1].Y - WilayahSumbu[1].Y) / (m1 - m2);
             y5 = m1 * x5 + WilayahSumbu[1].Y - m1 * WilayahSumbu[1].X;
@@ -652,12 +739,18 @@ namespace skripsi
             double asu = Math.Pow(WilayahSumbu[1].X, 2);
 
             double gradien = y5 - Kurva[1].Y / Kurva[1].X - x5;
-            //richTextBox2.AppendText(WilayahSumbu[1].X.ToString() +" "+ asu);
-            richTextBox2.AppendText("m1 : "+m1);
-            richTextBox2.AppendText("m2 : " + m2);
-            //richTextBox2.AppendText("x5 : " + x5+ " ");
-            //richTextBox2.AppendText("y5 : " + y5+ " ");
-            //richTextBox2.AppendText("m1 : " + m1);
+            //richTextBox2.AppendText();
+            richTextBox2.AppendText("m1 : "+m1 + " ");
+            richTextBox2.AppendText("m2 : " + m2 + " ");
+            richTextBox2.AppendText("x4 : " + x4 + " y4 : " + y4 + " ");
+            richTextBox2.AppendText("x5 : " + x5 + " y5 : " + y5 + " ");
+            richTextBox2.AppendText("a : " + a + " a1 : " + a1 + " ");
+            richTextBox2.AppendText("b : " + b + " b1 : " + b1 + " ");
+            //richTextBox2.AppendText("m2 : " + m2);
+
+            //richTextBox2.AppendText("asli : " + jammenit+ " ");
+            //richTextBox2.AppendText("menit : " + menit+ " ");
+            //richTextBox2.AppendText("mod : " + asli);
             richTextBox2.AppendText("x : " + x + ", " + "y : " + y);
             //richTextBox2.AppendText(" gradien : " + gradien + " m2 : " + m2);
             //richTextBox2.AppendText(WilayahSumbu[2].Y +" - " +WilayahSumbu[1].Y +" / "+ WilayahSumbu[2].X+ " - " +WilayahSumbu[1].X);
@@ -674,14 +767,14 @@ namespace skripsi
             find = new Point();
             Point atas = new Point();
             Point bawah = new Point();
-            Bresenham(WilayahSumbu, "test");
+            Plotline(WilayahSumbu, "test");
             listBox1.DataSource = Atas;
             listBox2.DataSource = SumbuX;
             for (int i = 0; damn == false;i++ )
             {
                 atas = Kanan[i];
                 bawah = SumbuY[i];
-                scaning = plotLine(bawah, atas);
+                scaning = Bresenham(bawah, atas);
                 if (scaning.Contains(Kurva[1]))
                 {
                     

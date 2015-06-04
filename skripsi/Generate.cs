@@ -14,21 +14,42 @@ namespace skripsi
 {
     public partial class formGen : Form
     {
+        struct realValue
+        {
+            public int Tinggi;
+            public int jam;
+        }
+        private List<realValue> Tma = new List<realValue>();
+        private List<Point> data = new List<Point>();
         public formGen()
         {
             InitializeComponent();
         }
-
-        private List<Point> Tma = new List<Point>();
+        
+        
 
         public void passList(List<Point> tma)
         {
-            this.Tma = tma;
+            this.data = tma;
+        }
+
+        public void convert()
+        {
+            realValue real;
+            for(int i=0; i<data.Count -1;i++)
+            {
+                real.Tinggi = data[i].X;
+                real.jam = data[i].Y;
+                Tma.Add(real);
+            }
+            
         }
 
         private void formGen_Load(object sender, EventArgs e)
         {
-            dgTMA.DataSource = Tma;
+            convert();
+            dgTMA.DataSource = data;
+            listBox1.DataSource = Tma;
         }
 
 

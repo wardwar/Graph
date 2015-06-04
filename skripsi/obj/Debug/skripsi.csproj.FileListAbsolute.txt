@@ -60,3 +60,25 @@ C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\skripsi\Graph\skripsi\bin\Debug\sk
 C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\skripsi\Graph\skripsi\obj\Debug\skripsi.Login.resources
 C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\skripsi\Graph\skripsi\obj\Debug\skripsi.Main.resources
 C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\skripsi\Graph\skripsi\bin\Debug\MySql.Data.dll
+H:\Graph\skripsi\bin\Debug\skripsi.exe.config
+H:\Graph\skripsi\obj\Debug\skripsi.exe
+H:\Graph\skripsi\obj\Debug\skripsi.pdb
+H:\Graph\skripsi\bin\Debug\skripsi.exe
+H:\Graph\skripsi\bin\Debug\skripsi.pdb
+H:\Graph\skripsi\obj\Debug\skripsi.csprojResolveAssemblyReference.cache
+H:\Graph\skripsi\obj\Debug\skripsi.Login.resources
+H:\Graph\skripsi\obj\Debug\skripsi.Main.resources
+H:\Graph\skripsi\obj\Debug\skripsi.formGen.resources
+H:\Graph\skripsi\obj\Debug\skripsi.Properties.Resources.resources
+H:\Graph\skripsi\obj\Debug\skripsi.csproj.GenerateResource.Cache
+G:\Graph\skripsi\bin\Debug\skripsi.exe.config
+G:\Graph\skripsi\obj\Debug\skripsi.exe
+G:\Graph\skripsi\obj\Debug\skripsi.pdb
+G:\Graph\skripsi\bin\Debug\skripsi.exe
+G:\Graph\skripsi\bin\Debug\skripsi.pdb
+G:\Graph\skripsi\obj\Debug\skripsi.csprojResolveAssemblyReference.cache
+G:\Graph\skripsi\obj\Debug\skripsi.Login.resources
+G:\Graph\skripsi\obj\Debug\skripsi.Main.resources
+G:\Graph\skripsi\obj\Debug\skripsi.formGen.resources
+G:\Graph\skripsi\obj\Debug\skripsi.Properties.Resources.resources
+G:\Graph\skripsi\obj\Debug\skripsi.csproj.GenerateResource.Cache
