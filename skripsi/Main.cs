@@ -12,6 +12,7 @@ using System.Drawing.Drawing2D;
 
 namespace skripsi
 {
+
     public partial class Main : Form
     {
         //lebar radius titik
@@ -46,10 +47,15 @@ namespace skripsi
         //mendeskripsikan tombol mana yng dipilih
         private string tombol;
 
+        private List<thistma> test = new List<thistma>();
+
         private List<Point> MovingPolyline = null;
         private int MovingPoint = -1;
         private int OffsetX, OffsetY;
-        double y4 = -1, x4 = -1,y5 = -1 , x5 = -1;
+        private double y4 = -1, x4 = -1,y5 = -1 , x5 = -1;
+
+        private int id_petugas;
+        private formGen f = new formGen();
 
 
 
@@ -59,13 +65,49 @@ namespace skripsi
         {
             InitializeComponent();
             openFileImage.Title = "Load Grafik";
-            openFileImage.Filter = "JPEG Image (.jpg) | *jpg";
+            openFileImage.Filter = "Image Files|*.jpg;*.png";
+            style();
+            dtPasang.Value = DateTime.Today;
 
+        }
+
+        public void id_pet(int id_petugas)
+        {
+            this.id_petugas = id_petugas;
+        }
+
+        private void style()
+        {
+            btnLoad.ForeColor = Color.White;
+            btnLoad.FlatStyle = FlatStyle.Flat;
+            btnLoad.BackColor = Color.FromArgb(33, 150, 243);
+            btnLoad.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+            btnLoad.FlatAppearance.BorderSize = 1;
+
+            btnSumbu.ForeColor = Color.White;
+            btnSumbu.FlatStyle = FlatStyle.Flat;
+            btnSumbu.BackColor = Color.FromArgb(33, 150, 243);
+            btnSumbu.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+            btnSumbu.FlatAppearance.BorderSize = 1;
+
+            btnKurva.ForeColor = Color.White;
+            btnKurva.FlatStyle = FlatStyle.Flat;
+            btnKurva.BackColor = Color.FromArgb(33, 150, 243);
+            btnKurva.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+            btnKurva.FlatAppearance.BorderSize = 1;
+
+            btnGen.ForeColor = Color.White;
+            btnGen.FlatStyle = FlatStyle.Flat;
+            btnGen.BackColor = Color.FromArgb(33, 150, 243);
+            btnGen.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+            btnGen.FlatAppearance.BorderSize = 1;
         }
         
         //Aksi dari tombol generate
         private void btnGen_Click(object sender, EventArgs e)
         {
+           
+            test.Clear();
             int x0 = WilayahSumbu[1].X;
             int x1 = WilayahSumbu[0].X;
             int x2 = WilayahSumbu[2].X;
@@ -74,11 +116,14 @@ namespace skripsi
             int y1 = WilayahSumbu[0].Y;
             int y2 = WilayahSumbu[2].Y;
             int y3;
-            double a, a1, b, b1;
+            int jam, menit, dt;
+            double a, a1, b, b1, x, y,belakangkoma;
+            DateTime tanggal;
             Point point = new Point();
+            thistma testpoint;
 
-            double m1 = (y1 - y0) / (x1 - x0);
-            double m2 = (y2 - y0) / (x2 - x0);
+            double m1 = ((double)y0 - (double)y1) / ((double)x0 - (double)x1);
+            double m2 = ((double)y2 - (double)y0) / ((double)x2 - (double)x0);
 
             for (int i = 0; i < KurvaScan.Count; i++)
             {
@@ -98,12 +143,26 @@ namespace skripsi
 
                 a = Math.Sqrt(Math.Pow(x4 - x0, 2) + Math.Pow(y4 - y0, 2));
                 a1 = Math.Sqrt(Math.Pow(x2 - x0, 2) + Math.Pow(y2 - y0, 2));
+                x = Math.Round(186 * (double)a / (double)a1, 2);
+                belakangkoma = Math.Round(x % (int)x, 2);
+                menit = (int)(belakangkoma * 60);
+                jam = (int)x;
+                
+                dt = jam / 24;
+                jam = jam % 24;
+                
+                tanggal = dtPasang.Value;
+                tanggal = tanggal.AddDays(dt);
+                
 
                 b = Math.Sqrt(Math.Pow(x5 - x0, 2) + Math.Pow(y5 - y0, 2));
                 b1 = Math.Sqrt(Math.Pow(x1 - x0, 2) + Math.Pow(y1 - y0, 2));
+                y = Math.Round(250 * (double)b / (double)b1, 3);
                 
                 point.X = 186 * (int)a / (int)a1;
                 point.Y = 250 *  (int)b / (int)b1;
+                testpoint = new thistma(tanggal.ToString(), jam, menit, y);
+                test.Add(testpoint);
                 tma.Add(point);
                 //richTextBox2.AppendText("x5 : " + x5 + " ");
                 //richTextBox2.AppendText("y5 : " + y5 + " ");
@@ -114,8 +173,8 @@ namespace skripsi
 
             //picCanvas.Invalidate();
             
-            formGen f = new formGen();
-            f.passList(this.tma);
+            f.passList(this.test);
+            f.id_pet(id_petugas);
             f.Show();
         }
 
@@ -161,6 +220,17 @@ namespace skripsi
             {
                 if(WilayahSumbu != null)
                 {
+                    btnKurva.BackColor = Color.FromArgb(33, 150, 243);
+                    btnKurva.FlatStyle = FlatStyle.Flat;
+                    btnKurva.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+                    btnKurva.FlatAppearance.BorderSize = 1;
+                    btnKurva.ForeColor = Color.White;
+
+                    btnSumbu.BackColor = Color.FromArgb(46, 204, 113);
+                    btnSumbu.FlatStyle = FlatStyle.Flat;
+                    btnSumbu.FlatAppearance.BorderColor = Color.FromArgb(46, 204, 113);
+                    btnSumbu.FlatAppearance.BorderSize = 1;
+                    btnSumbu.ForeColor = Color.White;
                     tombol = "sumbu";
                 }
             }
@@ -172,6 +242,17 @@ namespace skripsi
             {
                 if (Kurva != null)
                 {
+                    btnSumbu.BackColor = Color.FromArgb(33, 150, 243);
+                    btnSumbu.FlatStyle = FlatStyle.Flat;
+                    btnSumbu.FlatAppearance.BorderColor = Color.FromArgb(33, 150, 243);
+                    btnSumbu.FlatAppearance.BorderSize = 1;
+                    btnSumbu.ForeColor = Color.White;
+
+                    btnKurva.BackColor = Color.FromArgb(46, 204, 113);
+                    btnKurva.FlatStyle = FlatStyle.Flat;
+                    btnKurva.FlatAppearance.BorderColor = Color.FromArgb(46, 204, 113);
+                    btnKurva.FlatAppearance.BorderSize = 1;
+                    btnKurva.ForeColor = Color.White;
                     tombol = "kurva";
                 }
             }
@@ -350,7 +431,12 @@ namespace skripsi
 
             if(WilayahSumbu.Count>0 && Kurva.Count >0)
             {
-                btnGen.Enabled = true;
+                if(dtPasang.Value.Date != DateTime.Today && dtPasang.Value.Date < DateTime.Today)
+                {
+                    btnGen.Enabled = true;
+                }
+                
+                //btnBug.Visible = true;
             }
             picCanvas.Invalidate();
          
@@ -441,22 +527,22 @@ namespace skripsi
             {
                 e.Graphics.DrawPolygon(Pens.DarkMagenta, WilayahSumbu.ToArray());
             }
-            if (x4 != -1)
-            {
+            //if (x4 != -1)
+            //{
                 
-                e.Graphics.DrawLine(Pens.DarkViolet, (float)x4, (float)y4, Kurva[1].X, Kurva[1].Y);
-                e.Graphics.DrawLine(Pens.DarkViolet, (float)x5, (float)y5, Kurva[1].X, Kurva[1].Y);
-            }
-            if(cekx.Count != 0)
-            {
-                e.Graphics.DrawLine(Pens.DarkViolet, cekx[1], KurvaScan[1]);
-                e.Graphics.DrawLine(Pens.DarkViolet, ceky[1], KurvaScan[1]);
-            }
-            if (damn == true)
-            {
-                e.Graphics.DrawLine(Pens.DarkViolet, find, Kurva[1]);
+            //    e.Graphics.DrawLine(Pens.DarkViolet, (float)x4, (float)y4, Kurva[1].X, Kurva[1].Y);
+            //    e.Graphics.DrawLine(Pens.DarkViolet, (float)x5, (float)y5, Kurva[1].X, Kurva[1].Y);
+            //}
+            //if(cekx.Count != 0)
+            //{
+            //    e.Graphics.DrawLine(Pens.DarkViolet, cekx[1], KurvaScan[1]);
+            //    e.Graphics.DrawLine(Pens.DarkViolet, ceky[1], KurvaScan[1]);
+            //}
+            //if (damn == true)
+            //{
+            //    e.Graphics.DrawLine(Pens.DarkViolet, find, Kurva[1]);
 
-            }
+            //}
             if (Kurva.Count > 0)
             {
                 e.Graphics.DrawLines(Pens.DarkBlue, Kurva.ToArray());
@@ -515,7 +601,7 @@ namespace skripsi
            int x2 = ptB.X;
            int y2 = ptB.Y;
 
-           if(x2 >= x1)
+           if (x2 >= x1)
            {
                dx = x2 - x1;
                incx = 1;
@@ -537,21 +623,21 @@ namespace skripsi
                incy = -1;
            }
 
-           x=x1;
-           y=y1;
+           x = x1;
+           y = y1;
 
-           if( dx >= dy)
+           if (dx >= dy)
            {
                dy <<= 1;
                balance = dy - dx;
                dx <<= 1;
 
-               while(x != x2)
+               while (x != x2)
                {
                    plot.X = x;
                    plot.Y = y;
                    Scan.Add(plot);
-                   if(balance >= 0)
+                   if (balance >= 0)
                    {
                        y += incy;
                        balance -= dx;
@@ -575,7 +661,7 @@ namespace skripsi
                    plot.Y = y;
                    Scan.Add(plot);
 
-                   if(balance >= 0)
+                   if (balance >= 0)
                    {
                        x += incx;
                        balance -= dy;
@@ -599,15 +685,15 @@ namespace skripsi
            //Scan.Add(plot);
            //while (curDist < distance)
            //{
-             //  curDist++;
-               //if (curDist > 0)
-               //{
-                 //  int offsetX = (int)((double)curDist / (double)distance * (double)deltaX);
-                   //int offsetY = (int)((double)curDist / (double)distance * (double)deltaY);
-                   //plot.X = ptA.X + offsetX;
-                   //plot.Y = ptA.Y + offsetY;
-                   //Scan.Add(plot);
-               //}
+           //    curDist++;
+           //    if (curDist > 0)
+           //    {
+           //        int offsetX = (int)((double)curDist / (double)distance * (double)deltaX);
+           //        int offsetY = (int)((double)curDist / (double)distance * (double)deltaY);
+           //        plot.X = ptA.X + offsetX;
+           //        plot.Y = ptA.Y + offsetY;
+           //        Scan.Add(plot);
+           //    }
            //}
           return Scan;
        }
@@ -716,17 +802,17 @@ namespace skripsi
 
         private void btnBug_Click(object sender, EventArgs e)
         {
-            double m1 = ((double)WilayahSumbu[1].Y - (double)WilayahSumbu[0].Y) / ((double)WilayahSumbu[1].X - (double)WilayahSumbu[0].X);
+            double m1 = ((double)WilayahSumbu[0].Y - (double)WilayahSumbu[1].Y) / ((double)WilayahSumbu[0].X - (double)WilayahSumbu[1].X);
             double m2 = ((double)WilayahSumbu[2].Y - (double)WilayahSumbu[1].Y) / ((double)WilayahSumbu[2].X - (double)WilayahSumbu[1].X);
-            x4 = (m2 * WilayahSumbu[1].X - m1 * Kurva[1].X + Kurva[1].Y - WilayahSumbu[1].Y) / (m2 - m1);
+            x4 = (((m2 * WilayahSumbu[1].X) - (m1 * Kurva[1].X)) + Kurva[1].Y - WilayahSumbu[1].Y) / (m2 - m1);
             y4 = m2 * x4 + WilayahSumbu[1].Y - m2 * WilayahSumbu[1].X;
             double a = Math.Sqrt(Math.Pow(x4 - WilayahSumbu[1].X, 2) + Math.Pow(y4 - WilayahSumbu[1].Y, 2));
             double a1 = Math.Sqrt(Math.Pow(WilayahSumbu[2].X - WilayahSumbu[1].X, 2) + Math.Pow(WilayahSumbu[2].Y - WilayahSumbu[1].Y, 2));
-            double x = Math.Round(186 * (double)a / (double)a1,2);
-            double asli = Math.Round(x % (int)x,2);
+            double x = Math.Round((186 * a) / a1 , 2);
+            double asli = Math.Round((double)x % (int)x, 2);
             double menit = asli* 60;
-            int jamx = (int)x;
-            string jammenit = (int)x + ":" + (int)menit; 
+            double jamx = Math.Floor(x);
+            string jammenit = jamx%24 + ":" + (int)menit; 
 
 
 
@@ -740,18 +826,21 @@ namespace skripsi
 
             double gradien = y5 - Kurva[1].Y / Kurva[1].X - x5;
             //richTextBox2.AppendText();
-            richTextBox2.AppendText("m1 : "+m1 + " ");
-            richTextBox2.AppendText("m2 : " + m2 + " ");
-            richTextBox2.AppendText("x4 : " + x4 + " y4 : " + y4 + " ");
-            richTextBox2.AppendText("x5 : " + x5 + " y5 : " + y5 + " ");
-            richTextBox2.AppendText("a : " + a + " a1 : " + a1 + " ");
-            richTextBox2.AppendText("b : " + b + " b1 : " + b1 + " ");
+           //richTextBox2.AppendText("m1 : "+m1 + " ");
+            //richTextBox2.AppendText("m2 : " + m2 + " ");
+            //richTextBox2.AppendText("x4 : " + x4 + " y4 : " + y4 + " ");
+            //richTextBox2.AppendText("x5 : " + x5 + " y5 : " + y5 + " ");
+           //richTextBox2.AppendText("a : " + a + " a1 : " + a1 + " ");
+            //richTextBox2.AppendText("b : " + b + " b1 : " + b1 + " ");
             //richTextBox2.AppendText("m2 : " + m2);
 
+            label1.Text = jammenit.ToString();
+            label2.Text = m1.ToString();
+            label3.Text = m2.ToString();
             //richTextBox2.AppendText("asli : " + jammenit+ " ");
             //richTextBox2.AppendText("menit : " + menit+ " ");
             //richTextBox2.AppendText("mod : " + asli);
-            richTextBox2.AppendText("x : " + x + ", " + "y : " + y);
+            //richTextBox2.AppendText("x : " + x + ", " + "y : " + y);
             //richTextBox2.AppendText(" gradien : " + gradien + " m2 : " + m2);
             //richTextBox2.AppendText(WilayahSumbu[2].Y +" - " +WilayahSumbu[1].Y +" / "+ WilayahSumbu[2].X+ " - " +WilayahSumbu[1].X);
             picCanvas.Invalidate();
@@ -798,8 +887,42 @@ namespace skripsi
                 
         }
 
-
-
+        private void dtPasang_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtPasang.Value.Date != DateTime.Now.Date && dtPasang.Value.Date < DateTime.Now.Date)
+            {
+                btnGen.Enabled = true;
+            }
+        }
 
     }
+    public class thistma
+    {
+        public DateTime date;
+        
+        public string dt
+        {
+            get
+            {
+                return date.ToString();
+            }
+            set
+            {
+                DateTime.TryParse(value, out date);
+            }
+        }
+        public int jam { get; set; }
+        public int menit { get; set; }
+        public double tinggi { get; set; }
+
+        public thistma(string dt, int jam, int menit, double tinggi)
+        {
+            this.jam = jam;
+            this.menit = menit;
+            this.tinggi = tinggi;
+            this.dt = dt;
+        }
+    }
 }
+
+
