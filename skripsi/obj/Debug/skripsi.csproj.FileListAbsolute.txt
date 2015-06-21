@@ -83,3 +83,23 @@ G:\Graph\skripsi\obj\Debug\skripsi.Properties.Resources.resources
 G:\Graph\skripsi\obj\Debug\skripsi.csproj.GenerateResource.Cache
 C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\skripsi\Graph\skripsi\bin\Debug\MySql.Web.v20.dll
 C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\skripsi\Graph\skripsi\obj\Debug\skripsi.Main.resources
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\skripsi.exe.config
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.exe
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.pdb
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.csprojResolveAssemblyReference.cache
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.Login.resources
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.Main.resources
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.formGen.resources
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.Properties.Resources.resources
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.csproj.GenerateResource.Cache
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\skripsi.exe
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\skripsi.pdb
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\MySql.Data.dll
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\MySql.Web.v20.dll
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\AForge.dll
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\AForge.Imaging.dll
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\AForge.Math.dll
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\obj\Debug\skripsi.Value.resources
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\Generate.resx
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\Generate.cs
+C:\Users\wardwar\Dropbox\TA & SKRIPSI\program\Revisi\skripsi\bin\Debug\Generate.Designer.cs

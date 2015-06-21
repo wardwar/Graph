@@ -99,9 +99,10 @@ namespace skripsi
             label1.Text = id_petugas.ToString();
             db_connection();
             int count = 0;
+
+
             pbInsert.Visible = true;
             pbInsert.Maximum = tabel.Rows.Count;
-
             if (closed == false)
             {
                 MySqlCommand cmd = new MySqlCommand();

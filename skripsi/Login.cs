@@ -45,7 +45,7 @@ namespace skripsi
                 closed = false;
                 connect.Open();
             }
-            catch (MySql.Data.MySqlClient.MySqlException e)
+            catch (MySql.Data.MySqlClient.MySqlException)
             {
                 MessageBox.Show("Koneksi gagal!");
                 closed = true;
@@ -58,7 +58,7 @@ namespace skripsi
             if(closed == false)
             {
                 MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandText = "Select * from petugas where username=@user and password=MD5(@pass)";
+                cmd.CommandText = "Select id_petugas,nama_petugas,nama from petugas join pos on pos.id_pos = petugas.id_petugas where username=@user and password=MD5(@pass)";
                 cmd.Parameters.AddWithValue("@user", user);
                 cmd.Parameters.AddWithValue("@pass", password);
                 cmd.Connection = connect;
@@ -66,7 +66,7 @@ namespace skripsi
 
                 if (login.Read())
                 {
-                    main.id_pet(login.GetInt32(0));
+                    main.datapetugas(login.GetInt32("id_petugas"),login.GetString("nama_petugas"),login.GetString("nama"));
                     connect.Close();
                     return true;
                 }
